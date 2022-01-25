@@ -93,6 +93,22 @@
         }
     </style>
     <script>
+        $(document).ready(function () {
+            get_rate();
+        });
+
+        function get_rate() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/rate",
+                data: {},
+                success: function (response) {
+                    let now_rate = response['rate'];
+                    $('#now-rate').text(now_rate);
+                }
+            })
+        }
+
         function order() {
             alert('주문이 완료되었습니다!');
         }
@@ -107,7 +123,7 @@
     <h1 class="title">정관장 홍삼톤 골드</h1>
     <h2 class="price">가격: 49,000원/개</h2>
     <h3 class="discription">올해 2022년 설날에는 정관장 홍삼톤골드와 함께 풍성한 설 맞이해보세요. 기획 상품으로 50% 할인된 가격에 만나보실 수 있습니다.</h3>
-
+    <p class="rate">달러-원 환율: <span id="now-rate"></span></p>
     <h2>
         <div class="firstbox">
             주문자이름

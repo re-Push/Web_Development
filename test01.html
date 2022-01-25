@@ -21,120 +21,116 @@
             crossorigin="anonymous"></script>
 
     <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
     <style>
         * {
-            font-family: 'Gaegu', cursive;
+            font-family: 'Jua', sans-serif;
+        }
+
+        .item-img {
+            width: 500px;
+            height: 300px;
+
+            background-image: url("https://t1.daumcdn.net/liveboard/nts/5bcccfbd33da4865817b9c606b6b852e.JPG");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .price {
+            font-size: 20px;
+        }
+
+        .item-desc {
+            width: 500px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item-order {
+            width: 500px;
+        }
+
+        .btn-order {
+            margin: auto;
+            width: 100px;
+
+            display: block;
         }
 
         .wrap {
-            width: 900px;
+            width: 500px;
             margin: auto;
         }
 
-        .comment {
+        .rate {
             color: blue;
-            font-weight: bold;
-        }
-        .postbox {
-            width: 500px;
-            border-style: solid;
-            border-radius: 5px;
-            margin: auto;
-            margin-bottom: 20px;
-            padding: 50px;
-        }
-        .commentbox {
-            height: 60px;
         }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            get_rate();
+        });
+
+        function get_rate(){
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/rate",
+                data: {},
+                success: function (response) {
+                    let now_rate = response['rate'];
+                    $('#now-rate').text(now_rate);
+                }
+            })
+        }
+
+        function order() {
+            alert('주문이 완료되었습니다!');
+        }
+    </script>
 </head>
 
 <body>
 <div class="wrap">
-    <div class="jumbotron">
-        <h1 class="display-4">나홀로 링크 메모장!</h1>
-        <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
-        <hr class="my-4">
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">포스팅박스 열기</a>
-        </p>
+    <div class="item-img"></div>
+    <div class="item-desc">
+        <h1>양초를 팝니다 <span class="price">가격:3,000원/개</span></h1>
+        <p>이 양초는 사실 특별한 힘을 지니고 있어요!</p>
+        <p class="rate">달러-원 환율: <span id="now-rate">1219.15</span></p>
     </div>
-    <div class="postbox">
-        <div class="form-group">
-            <label for="exampleInputEmail1">아티클 URL</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">간단 코멘트</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">기사저장</button>
-    </div>
-    <div class="card-columns">
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                 alt="Card image cap">
-            <div class="card-body">
-                <a href="http://naver.com/" class="card-title">여기 기사 제목이 들어가죠</a>
-                <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                <p class="comment"> 여기에 코멘트가 들어갑니다.</p>
+    <div class="item-order">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">주문자이름</span>
             </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                 alt="Card image cap">
-            <div class="card-body">
-                <a href="http://naver.com/" class="card-title">여기 기사 제목이 들어가죠</a>
-                <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                <p class="comment"> 여기에 코멘트가 들어갑니다.</p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">수량</label>
             </div>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option selected>-- 수량을 선택하세요 --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
         </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                 alt="Card image cap">
-            <div class="card-body">
-                <a href="http://naver.com/" class="card-title">여기 기사 제목이 들어가죠</a>
-                <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                <p class="comment"> 여기에 코멘트가 들어갑니다.</p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">주소</span>
             </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                 alt="Card image cap">
-            <div class="card-body">
-                <a href="http://naver.com/" class="card-title">여기 기사 제목이 들어가죠</a>
-                <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                <p class="comment"> 여기에 코멘트가 들어갑니다.</p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">전화번호</span>
             </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                 alt="Card image cap">
-            <div class="card-body">
-                <a href="http://naver.com/" class="card-title">여기 기사 제목이 들어가죠</a>
-                <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                <p class="comment"> 여기에 코멘트가 들어갑니다.</p>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                 alt="Card image cap">
-            <div class="card-body">
-                <a href="http://naver.com/" class="card-title">여기 기사 제목이 들어가죠</a>
-                <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                <p class="comment"> 여기에 코멘트가 들어갑니다.</p>
-            </div>
-        </div>
+        <button type="button" onclick="order()" class="btn btn-primary btn-order">주문하기</button>
     </div>
 </div>
 </body>
